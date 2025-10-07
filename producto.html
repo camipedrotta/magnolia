@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Productos | Casa Magnolia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <img src="img/logo.jpg" alt="Logo Casa Magnolia" class="brand__logo">
+        <span class="brand__name">Casa Magnolia</span>
+      </a>
+
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="producto.html">Productos</a>
+        <a href="ubicacion.html">Ubicación</a> <a href="contacto.html" class="btn btn--accent">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="productos" class="section">
+    <div class="container">
+      <h2>Productos</h2>
+
+      <h3 class="kicker">Florería</h3>
+      <div class="cards">
+        <article class="card">
+          <img src="img/ramos.jpg" alt="Ramos de flores en tonos rojos y violetas">
+          <div class="card__body">
+            <h4>Ramos</h4>
+            <p>Para regalos y ocasiones especiales. Diseños frescos y personalizados.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/macetas-con-flores.jpg" alt="Macetas con flores de temporada">
+          <div class="card__body">
+            <h4>Macetas con flores</h4>
+            <p>Arreglos en maceta para interiores y balcones. Cuidado simple y aroma natural.</p>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="kicker">Deco</h3>
+      <div class="cards">
+        <article class="card">
+          <img src="img/velas-aromaticas.jpg" alt="Vela aromática con pétalos">
+          <div class="card__body">
+            <h4>Velas aromáticas</h4>
+            <p>Cera vegetal, fragancias botánicas y pétalos. Luz cálida para tus rituales.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/flores-prensadas.jpg" alt="Cuadros con flores prensadas">
+          <div class="card__body">
+            <h4>Flores prensadas</h4>
+            <p>Arte botánico enmarcado: piezas únicas para sumar carácter y serenidad.</p>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="kicker">Autocuidado y bienestar</h3>
+      <div class="cards">
+        <article class="card">
+          <img src="img/jabones.jpg" alt="Jabones botánicos translúcidos con flores">
+          <div class="card__body">
+            <h4>Jabones</h4>
+            <p>Hechos a mano con extractos florales. Suaves, aromáticos, hermosos.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="img/aceites-corporales.jpg" alt="Aceites corporales con flores">
+          <div class="card__body">
+            <h4>Aceites corporales</h4>
+            <p>Fórmulas nutritivas con notas de jazmín y magnolia para tu piel.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Casa Magnolia — Hecho con amor y flores.</p>
+      <a class="top" href="#productos">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
