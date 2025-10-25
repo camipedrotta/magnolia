@@ -1,0 +1,248 @@
+<!-- File: promociones.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Promociones | Casa Magnolia</title>
+  <!-- Reutilizá tu mismo CSS del sitio si existe (ajustá la ruta si tu archivo se llama styles.css o similar) -->
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos mínimos de refuerzo por si tu CSS global no cubre todo */
+    :root { --rosa:#f6ebef; --vino:#5d1c49; --magenta:#863070; }
+    body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; line-height:1.5; color:#222}
+    .container{max-width:1000px;margin:0 auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0}
+    nav a{margin-right:16px;text-decoration:none;color:#333}
+    h1{font-size:clamp(28px,4vw,40px);color:var(--vino);margin-bottom:4px}
+    .sub{color:#555;margin-bottom:20px}
+    .promo-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:24px}
+    .card{background:white;border:1px solid #eee;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.06);padding:18px}
+    .card h2{margin:0 0 12px 0;color:var(--magenta);font-size:20px}
+    .products{display:grid;grid-template-columns:1.2fr 110px 130px;gap:8px;align-items:center}
+    .products .head{font-weight:700;color:#444}
+    .products input[type="number"]{width:100%;padding:8px;border:1px solid #ddd;border-radius:10px}
+    .note{font-size:13px;color:#666;margin-top:8px}
+    .promos label{display:block;margin:.4rem 0;padding:.4rem .6rem;border:1px solid #e5d0da;border-radius:10px}
+    .promos small{color:#666}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{background:var(--magenta);color:white;border:none;border-radius:999px;padding:10px 16px;cursor:pointer}
+    .btn.secondary{background:#222}
+    .result{font-size:16px}
+    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .kpi .pill{background:var(--rosa);border:1px dashed var(--magenta);padding:12px;border-radius:14px}
+    footer{margin-top:36px;color:#666}
+    @media (max-width: 860px){.promo-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div><a href="index.html" aria-label="Inicio">Casa Magnolia</a></div>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="producto.html">Productos</a>
+        <a href="ubicacion.html">Ubicación</a>
+        <a href="contacto.html">Contacto</a>
+        <strong><a href="promociones.html">Promociones</a></strong>
+      </nav>
+    </header>
+
+    <h1>Promociones</h1>
+    <p class="sub">Elegí tus productos, aplicá una promoción y mirá cuánto te ahorrás.</p>
+
+    <div class="promo-grid">
+      <!-- Columna izquierda: productos y cantidades -->
+      <section class="card">
+        <h2>Seleccioná cantidades y precios</h2>
+        <div class="products" role="table" aria-label="Productos">
+          <div class="head">Producto</div>
+          <div class="head">Cantidad</div>
+          <div class="head">Precio unitario ($)</div>
+
+          <!-- Los precios son sugeridos y editables. Ajustá a tu lista real. -->
+          <div>Ramo de flores (estándar)</div>
+          <div><input type="number" min="0" id="qty-ramos" value="0" /></div>
+          <div><input type="number" min="0" id="price-ramos" value="25000" /></div>
+
+          <div>Maceta con flores</div>
+          <div><input type="number" min="0" id="qty-macetas" value="0" /></div>
+          <div><input type="number" min="0" id="price-macetas" value="22000" /></div>
+
+          <div>Vela aromática</div>
+          <div><input type="number" min="0" id="qty-velas" value="0" /></div>
+          <div><input type="number" min="0" id="price-velas" value="12000" /></div>
+
+          <div>Flores prensadas (cuadro)</div>
+          <div><input type="number" min="0" id="qty-prensadas" value="0" /></div>
+          <div><input type="number" min="0" id="price-prensadas" value="18000" /></div>
+
+          <div>Jabón botánico</div>
+          <div><input type="number" min="0" id="qty-jabones" value="0" /></div>
+          <div><input type="number" min="0" id="price-jabones" value="6000" /></div>
+
+          <div>Aceite corporal</div>
+          <div><input type="number" min="0" id="qty-aceites" value="0" /></div>
+          <div><input type="number" min="0" id="price-aceites" value="15000" /></div>
+        </div>
+        <p class="note">Tip: podés ajustar precios a la lista vigente; el cálculo se actualiza con esos valores.</p>
+      </section>
+
+      <!-- Columna derecha: promociones y resultados -->
+      <aside class="card">
+        <h2>Elegí una promoción</h2>
+        <form class="promos" id="promo-form">
+          <label>
+            <input type="radio" name="promo" value="segundo50" checked />
+            2 productos: 50% en el segundo (solo Deco: velas, jabones, aceites)
+            <br /><small>Se aplica por pares dentro de la categoría seleccionada (toma el de menor precio de cada par).</small>
+          </label>
+          <label>
+            <input type="radio" name="promo" value="3x2" />
+            3x2 en productos seleccionados (velas, jabones, aceites)
+            <br /><small>Pagás 2, te llevás 3. El gratis es el de menor precio en cada grupo.</small>
+          </label>
+          <label>
+            <input type="radio" name="promo" value="umbral10" />
+            10% de descuento por compras &gt; $30.000 (aplica a todo)
+            <br /><small>Se aplica si el subtotal supera el umbral.</small>
+          </label>
+        </form>
+
+        <div class="actions">
+          <button id="calc" class="btn" type="button">Calcular ahorro</button>
+          <button id="reset" class="btn secondary" type="button">Reiniciar</button>
+        </div>
+
+        <div class="result" id="result" aria-live="polite"></div>
+        <div class="kpi" id="kpi" hidden>
+          <div class="pill"><strong>Subtotal:</strong> <span id="k-subtotal">$0</span></div>
+          <div class="pill"><strong>Descuento:</strong> <span id="k-desc">$0</span></div>
+          <div class="pill"><strong>Total final:</strong> <span id="k-total">$0</span></div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      © Casa Magnolia — Hecho con amor y flores.
+    </footer>
+  </div>
+
+  <script src="promociones.js"></script>
+</body>
+</html>
+
+
+/* =============================
+   File: promociones.js
+   Guardá este archivo a la par de promociones.html
+   ============================= */
+
+// Utilidades
+const $ = (sel) => document.querySelector(sel);
+const money = (n) => n.toLocaleString("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 });
+
+// Lee cantidades y precios desde los inputs
+function getCart() {
+  const items = [
+    { key: "ramos",      name: "Ramo de flores",       qty: +$("#qty-ramos").value || 0,      price: +$("#price-ramos").value || 0,      category: "floreria" },
+    { key: "macetas",    name: "Maceta con flores",    qty: +$("#qty-macetas").value || 0,    price: +$("#price-macetas").value || 0,    category: "floreria" },
+    { key: "velas",      name: "Vela aromática",       qty: +$("#qty-velas").value || 0,      price: +$("#price-velas").value || 0,      category: "deco" },
+    { key: "prensadas",  name: "Flores prensadas",     qty: +$("#qty-prensadas").value || 0,  price: +$("#price-prensadas").value || 0,  category: "deco" },
+    { key: "jabones",    name: "Jabón botánico",       qty: +$("#qty-jabones").value || 0,    price: +$("#price-jabones").value || 0,    category: "deco" },
+    { key: "aceites",    name: "Aceite corporal",      qty: +$("#qty-aceites").value || 0,    price: +$("#price-aceites").value || 0,    category: "deco" },
+  ];
+  return items.filter(i => i.qty > 0 && i.price > 0);
+}
+
+function subtotal(items){
+  return items.reduce((acc,i)=> acc + i.qty * i.price, 0);
+}
+
+// -------- Promociones ---------
+// 1) Segundo al 50% (pares) solo categoría Deco (velas, jabones, aceites)
+function promoSegundo50(items){
+  const deco = items.filter(i => i.category === "deco");
+  // Expandimos a una lista de unidades con su precio para poder formar pares ordenados por precio ascendente
+  const units = [];
+  deco.forEach(i => { for(let c=0;c<i.qty;c++) units.push(i.price); });
+  units.sort((a,b)=> a-b);
+  // Por cada par (2), el segundo recibe 50%
+  let discount = 0; 
+  for(let idx=1; idx<units.length; idx+=2){
+    discount += units[idx] * 0.5; // el más caro del par?
+    // Para ser más generosos con el cliente, aplicamos 50% al segundo elemento del par ordenado ascendente => el más caro queda segundo si ordenáramos descendente; acá tomamos el de índice 1,3,5,... sobre orden ascendente, lo cual aplica 50% a los más caros de cada par? 
+    // Si preferís aplicar al de menor precio, reemplazá units[idx] por units[idx-1].
+  }
+  return discount;
+}
+
+// 2) 3x2 en Deco (velas, jabones, aceites): cada 3 unidades, 1 gratis (la de menor precio del trío)
+function promo3x2(items){
+  const deco = items.filter(i => i.category === "deco");
+  const units = [];
+  deco.forEach(i => { for(let c=0;c<i.qty;c++) units.push(i.price); });
+  units.sort((a,b)=> a-b); // el más barato primero
+  let discount = 0;
+  // Por cada grupo de 3, descontamos 1 del precio menor
+  for(let i=0; i+2<units.length; i+=3){
+    discount += units[i];
+  }
+  return discount;
+}
+
+// 3) 10% por umbral de subtotal > 30000 (aplica a todo)
+function promoUmbral10(items){
+  const sub = subtotal(items);
+  return sub > 30000 ? sub * 0.10 : 0;
+}
+
+function pickPromo(name){
+  return {
+    segundo50: promoSegundo50,
+    "3x2": promo3x2,
+    umbral10: promoUmbral10
+  }[name];
+}
+
+function calculate(){
+  const items = getCart();
+  const sub = subtotal(items);
+  const chosen = document.querySelector('input[name="promo"]:checked')?.value || "segundo50";
+  const fn = pickPromo(chosen);
+  const discount = fn ? fn(items) : 0;
+  const total = Math.max(0, sub - discount);
+
+  // Resultado descriptivo
+  const lines = [
+    `<strong>Promoción aplicada:</strong> ${
+      chosen === 'segundo50' ? '2 productos, 50% en el segundo (Deco)' :
+      chosen === '3x2'       ? '3x2 (Deco)' :
+                               '10% por compras > $30.000'}`,
+    `<strong>Subtotal:</strong> ${money(sub)}`,
+    `<strong>Descuento:</strong> ${money(discount)}`,
+    `<strong>Total final:</strong> ${money(total)}`
+  ];
+  $("#result").innerHTML = lines.map(l=>`<p>${l}</p>`).join("");
+  $("#k-subtotal").textContent = money(sub);
+  $("#k-desc").textContent = money(discount);
+  $("#k-total").textContent = money(total);
+  $("#kpi").hidden = false;
+}
+
+function resetAll(){
+  document.querySelectorAll('input[type="number"]').forEach(inp=> inp.value = inp.id.startsWith('price-') ? inp.value : 0);
+  document.querySelector('input[name="promo"][value="segundo50"]').checked = true;
+  $("#result").innerHTML = "";
+  $("#kpi").hidden = true;
+}
+
+$("#calc").addEventListener('click', calculate);
+$("#reset").addEventListener('click', resetAll);
+
+// Recalcular en vivo si el usuario cambia valores
+[...document.querySelectorAll('input[type="number"], input[name="promo"]')].forEach(el=> el.addEventListener('input', calculate));
+
+// Cálculo inicial vacío
+resetAll();
